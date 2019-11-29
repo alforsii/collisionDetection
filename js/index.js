@@ -44,9 +44,25 @@ function animate() {
   smallCircle.draw();
   smallCircle.x = mouse.x;
   smallCircle.y = mouse.y;
-
+  let distance = getDistance(
+    smallCircle.x,
+    smallCircle.y,
+    bigCircle.x,
+    bigCircle.y
+  );
+  if (distance < smallCircle.radius + bigCircle.radius) {
+    bigCircle.color = 'red';
+  } else {
+    bigCircle.color = 'black';
+  }
   timer++;
   //   console.log('Output for: animate -> timer', timer);
+}
+
+function getDistance(x1, y1, x2, y2) {
+  let xDistance = x2 - x1;
+  let yDistance = y2 - y1;
+  return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
 }
 
 init();
